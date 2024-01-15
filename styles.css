@@ -30,8 +30,9 @@ nav ul li.right {
 }
 
 .product {
-    text-align: center;
-    margin: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
 }
 
 .product img {

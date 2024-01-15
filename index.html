@@ -3,30 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clothes Shop</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Your Webpage</title>
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li class="right"><a href="clothes.html">Clothes</a></li>
-            <li class="right"><a href="jewelry.html">Jewelry</a></li>
-        </ul>
-    </nav>
+<!-- Container for Clothing Data -->
+<div id="clothing-container"></div>
 
-    <div class="product">
-        <img src="placeholder_image.jpg" alt="Clothing Item">
-        <h2>Stylish T-Shirt</h2>
-        <p>A comfortable and trendy t-shirt for any occasion. Available in various colors and sizes.</p>
-        <button id="buyButton">Buy Now</button>
-    </div>
+<!-- Container for Jewelry Data -->
+<div id="jewelry-container"></div>
 
-    <footer>
-        <p>&copy; 2024 Clothes Shop. All rights reserved.</p>
-    </footer>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="right"><a href="clothes.html">Clothes</a></li>
+        <li class="right"><a href="jewelry.html">Jewelry</a></li>
+    </ul>
+</nav>
 
-    <script src="script.js"></script>
+<div class="product">
+    <img src="placeholder_image.jpg" alt="Clothing Item">
+    <h2>Stylish T-Shirt</h2>
+    <p>A comfortable and trendy t-shirt for any occasion. Available in various colors and sizes.</p>
+    <button id="buyButton">Buy Now</button>
+</div>
+
+<footer>
+    <p>&copy; 2024 Clothes Shop. All rights reserved.</p>
+</footer>
+
+
+    <!-- Script to Fetch and Display Data -->
+<script>
+    // Fetch clothing data from the server
+    fetch('http://localhost:3000/clothing')
+        .then(response => response.json())
+        .then(data => {
+            // Update the webpage with clothing data
+            displayItems(data, 'clothing-container');
+        })
+        .catch(error => console.error('Error fetching clothing data:', error));
+
+    // Fetch jewelry data from the server
+    fetch('http://localhost:3000/jewelry')
+        .then(response => response.json())
+        .then(data => {
+            // Update the webpage with jewelry data
+            displayItems(data, 'jewelry-container');
+        })
+        .catch(error => console.error('Error fetching jewelry data:', error));
+
+        // Function to display items on the webpage
+        function displayItems(items, containerId) {
+        // Get the container element by its ID
+        var container = document.getElementById(containerId);
+
+        // Clear existing content in the container
+        container.innerHTML = '';
+
+        // Loop through the items and create HTML elements
+        items.forEach(item => {
+            var itemElement = document.createElement('div');
+            itemElement.className = 'product'; // Add a class for styling
+
+            itemElement.innerHTML = `<h3>${item.name}</h3>
+                                    <p>${item.description}</p>
+                                    ${item.size ? `<p>Size: ${item.size}</p>` : ''}
+                                    <img src="${item.image_url}" alt="${item.name}">`;
+
+            // Append the item element to the container
+            container.appendChild(itemElement);
+        });
+    }
+
+</script>
+
 </body>
 </html>
