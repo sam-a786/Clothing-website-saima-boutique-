@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Webpage</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
 </head>
 <body>
 
 <!-- Container for Clothing Data -->
-<div id="clothing-container"></div>
+<div id="clothing-container" class="product-container"></div>
 
 <!-- Container for Jewelry Data -->
 <div id="jewelry-container"></div>
@@ -36,14 +39,14 @@
 
     <!-- Script to Fetch and Display Data -->
 <script>
-    // Fetch clothing data from the server
-    fetch('http://localhost:3000/clothing')
-        .then(response => response.json())
-        .then(data => {
-            // Update the webpage with clothing data
-            displayItems(data, 'clothing-container');
-        })
-        .catch(error => console.error('Error fetching clothing data:', error));
+    fetch('/clothing')  // Relative path
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        displayClothingItems(data, 'clothing-container');
+    })
+    .catch(error => console.error('Error fetching clothing data:', error));
+
 
     // Fetch jewelry data from the server
     fetch('http://localhost:3000/jewelry')

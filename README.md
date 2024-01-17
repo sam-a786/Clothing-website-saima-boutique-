@@ -8,3 +8,12 @@ As I was talking to the client this topic came up and I'm aware that we are dire
 Client-Side (Frontend): Your HTML, CSS, and JavaScript files that run in the user's browser.
 Server-Side (Backend): Handles interactions with the database and serves data to the client-side. This is typically implemented using Node.js
 in order to get data from the database we need the server side interacting with the database to do this we will use NODE
+
+
+
+# Installations
+npm install mysql2
+npm install express
+npm install mysql
+npm install mysql@2.18.1
+npm install mysql@latest
